@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CurrentOrder"></activity>
+        <activity android:name=".Current_Order"></activity>
+        <activity android:name=".Available_Order" />
+        <activity android:name=".CurrentOrder" />
         <activity android:name=".Payment" />
         <activity android:name=".Payment1" />
         <activity android:name=".Settings_Del" />

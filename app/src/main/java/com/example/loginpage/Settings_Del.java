@@ -1,25 +1,19 @@
 package com.example.loginpage;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Settings_Del extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class Settings_Del extends AppCompatActivity {
 
     TextInputLayout fullName,username;
     TextInputLayout phoneNo,password,radius;
@@ -27,31 +21,11 @@ public class Settings_Del extends AppCompatActivity implements NavigationView.On
     DatabaseReference reference;
     String user_username, user_name,  user_radius ,user_phoneNo, user_password ;
 
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Toolbar toolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings__cus);
-
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigation_view);
-
-        ActionBarDrawerToggle toggle =new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        //to make menu clickable
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.bringToFront();
-
-        //select home menu as default
-        navigationView.setCheckedItem(R.id.nav_settings);
+        setContentView(R.layout.activity_settings__del);
 
 
         reference = FirebaseDatabase.getInstance().getReference("users");
@@ -108,83 +82,9 @@ public class Settings_Del extends AppCompatActivity implements NavigationView.On
             user_name=fullName.getEditText().getText().toString();
 
             Toast.makeText(this, "Updated Successfully.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Settings_Del.this,DeliveryPanel.class);
-            startActivity(intent);
 
         }
 
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId())
-        {
-            case R.id.nav_home:
-                navigationView.setCheckedItem(R.id.nav_home);
-                PassData1();
-                break;
-
-            case R.id.nav_cart:
-                navigationView.setCheckedItem(R.id.nav_cart);
-                PassData2();
-                break;
-
-            case R.id.nav_settings:
-                break;
-        }
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    private void PassData1() {
-
-        String user_username = getIntent().getStringExtra("username");
-        String user_name = getIntent().getStringExtra("name");
-        String user_radius = getIntent().getStringExtra("radius");
-        String user_phoneNo = getIntent().getStringExtra("phone");
-        String user_password = getIntent().getStringExtra("password");
-
-        Intent intent_set = new Intent(Settings_Del.this, Restaurant_MainScreen_User.class);
-        intent_set.putExtra("username", user_username);
-        intent_set.putExtra("name", user_name);
-        intent_set.putExtra("radius", user_radius);
-        intent_set.putExtra("phone", user_phoneNo);
-        intent_set.putExtra("password", user_password);
-        startActivity(intent_set);
-    }
-
-    private void PassData2() {
-
-        String user_username = getIntent().getStringExtra("username");
-        String user_name = getIntent().getStringExtra("name");
-        String user_radius = getIntent().getStringExtra("radius");
-        String user_phoneNo = getIntent().getStringExtra("phone");
-        String user_password = getIntent().getStringExtra("password");
-
-        Intent intent_set = new Intent(Settings_Del.this, Cart_User.class);
-        intent_set.putExtra("username", user_username);
-        intent_set.putExtra("name", user_name);
-        intent_set.putExtra("radius", user_radius);
-        intent_set.putExtra("phone", user_phoneNo);
-        intent_set.putExtra("password", user_password);
-        startActivity(intent_set);
-    }
-
-    private void PassData3() {
-
-        String user_username = getIntent().getStringExtra("username");
-        String user_name = getIntent().getStringExtra("name");
-        String user_radius = getIntent().getStringExtra("radius");
-        String user_phoneNo = getIntent().getStringExtra("phone");
-        String user_password = getIntent().getStringExtra("password");
-
-        Intent intent_set = new Intent(Settings_Del.this, Settings_Cus.class);
-        intent_set.putExtra("username", user_username);
-        intent_set.putExtra("name", user_name);
-        intent_set.putExtra("radius", user_radius);
-        intent_set.putExtra("phone", user_phoneNo);
-        intent_set.putExtra("password", user_password);
-        startActivity(intent_set);
     }
 
 }
