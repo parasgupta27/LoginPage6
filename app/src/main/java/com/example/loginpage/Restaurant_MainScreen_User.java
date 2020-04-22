@@ -117,6 +117,11 @@ public class Restaurant_MainScreen_User extends AppCompatActivity implements Vie
                 navigationView.setCheckedItem(R.id.nav_settings);
                 PassData3();
                 break;
+
+            case R.id.nav_current:
+                navigationView.setCheckedItem(R.id.nav_current);
+                PassData4();
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -188,6 +193,23 @@ public class Restaurant_MainScreen_User extends AppCompatActivity implements Vie
         intent_set.putExtra("phone", user_phoneNo);
         intent_set.putExtra("password", user_password);
         startActivity(intent_set);
+    }
+
+    private void PassData4() {
+
+        String user_username = getIntent().getStringExtra("username");
+        String user_name = getIntent().getStringExtra("name");
+        String user_radius = getIntent().getStringExtra("radius");
+        String user_phoneNo = getIntent().getStringExtra("phone");
+        String user_password = getIntent().getStringExtra("password");
+
+        Intent intent_set = new Intent(Restaurant_MainScreen_User.this, CurrentOrder.class);
+        intent_set.putExtra("username", user_username);
+        intent_set.putExtra("name", user_name);
+        intent_set.putExtra("radius", user_radius);
+        intent_set.putExtra("phone", user_phoneNo);
+        intent_set.putExtra("password", user_password);
+        startActivityForResult(intent_set,1);
     }
 
 

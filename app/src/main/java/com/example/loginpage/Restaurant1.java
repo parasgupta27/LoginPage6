@@ -134,6 +134,12 @@ public class Restaurant1 extends AppCompatActivity implements  NavigationView.On
                 PassData3();
                 navigationView.setCheckedItem(R.id.nav_settings);
                 break;
+
+            case R.id.nav_current:
+
+                PassData4();
+                navigationView.setCheckedItem(R.id.nav_current);
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -183,6 +189,23 @@ public class Restaurant1 extends AppCompatActivity implements  NavigationView.On
         String user_password = getIntent().getStringExtra("password");
 
         Intent intent_set = new Intent(Restaurant1.this, Settings_Cus.class);
+        intent_set.putExtra("username", user_username);
+        intent_set.putExtra("name", user_name);
+        intent_set.putExtra("radius", user_radius);
+        intent_set.putExtra("phone", user_phoneNo);
+        intent_set.putExtra("password", user_password);
+        startActivity(intent_set);
+    }
+
+    private void PassData4() {
+
+        String user_username = getIntent().getStringExtra("username");
+        String user_name = getIntent().getStringExtra("name");
+        String user_radius = getIntent().getStringExtra("radius");
+        String user_phoneNo = getIntent().getStringExtra("phone");
+        String user_password = getIntent().getStringExtra("password");
+
+        Intent intent_set = new Intent(Restaurant1.this, CurrentOrder.class);
         intent_set.putExtra("username", user_username);
         intent_set.putExtra("name", user_name);
         intent_set.putExtra("radius", user_radius);
